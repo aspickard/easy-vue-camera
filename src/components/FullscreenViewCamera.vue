@@ -82,7 +82,7 @@ export default {
             if(!this.camera) {
                 console.error('Camera not found to take a picture');
                 return;
-            }            
+            }
             return new Promise(resolve => {
                 this.camera.snapAsBlob()
                     .then(picture => {
@@ -90,7 +90,7 @@ export default {
                         resolve(picture);
                     });
             });
-        }, 
+        },
         snapAsDataUrl() {
             if(!this.camera) {
                 console.error('Camera not found to take a picture');
@@ -158,6 +158,7 @@ export default {
             this.start()
                 .then(camera => {
                     if(camera) {
+                        camera.constraints.video.facingMode = 'environment';
                         camera.start();
                     }
                 })
