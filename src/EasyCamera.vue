@@ -65,7 +65,7 @@ export default {
         return {
             camera: null,
         }
-    }, 
+    },
     methods: {
         close() {
             if(this.refFullscreenCamera) {
@@ -98,7 +98,6 @@ export default {
             this.refCameraComponent
                 .start((camera) => {
                     if(camera) {
-                        this.$emit('loading', true);
                         camera.start()
                             .finally(() => this.$emit('loading', false));
                     }
@@ -123,7 +122,7 @@ export default {
     props: {
         autoDetectMobile: {
             type: Boolean,
-            default: true  
+            default: true
         },
         fullscreen: Boolean,
         fullscreenZIndex: {
