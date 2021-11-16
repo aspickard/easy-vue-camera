@@ -82,6 +82,8 @@ export default {
                 this.stop();
                 if(!this.mustApprove || !this.fullscreen) {
                     this.$emit('input', picture);
+                } else {
+                    this.$emit('preapprove', picture);
                 }
             } else {
                 this.$emit('loading', true);
@@ -137,7 +139,7 @@ export default {
         approveReady: {
             type: Boolean,
             default: true
-        },
+        }
         output: {
             type: String,
             default: OutputType.dataUrl
