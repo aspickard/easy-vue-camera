@@ -159,7 +159,6 @@ export default {
         }
     },
     mounted() {
-        this.approveReady = false
         if(this.startOnMounted) {
             this.$emit('loading', true);
             this.start()
