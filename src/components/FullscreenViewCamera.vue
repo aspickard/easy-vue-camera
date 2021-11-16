@@ -23,7 +23,7 @@
                     </div>
                     <div class="control-slot">
                         <a @click="$emit('snap')" role="button" v-if="!picture"><i class="mdi mdi-circle"></i></a>
-                        <a @click="approve" role="button" v-if="picture && mustApprove"><i class="mdi mdi-check"></i></a>
+                        <a @click="approve" role="button" v-if="picture && mustApprove && approveReady"><i class="mdi mdi-check"></i></a>
                     </div>
                     <div class="control-slot">
                         <a @click="switchCamera(false)" 
@@ -153,6 +153,7 @@ export default {
         }
     },
     mounted() {
+        this.approveReady = false
         if(this.startOnMounted) {
             this.$emit('loading', true);
             this.start()
@@ -170,6 +171,7 @@ export default {
     props: {
         fullscreenZIndex: Number,
         mustApprove: Boolean,
+        approveReady: Boolean,
         overlayMask: String,
         startOnMounted: Boolean,
         visibleOverlay: Boolean,
