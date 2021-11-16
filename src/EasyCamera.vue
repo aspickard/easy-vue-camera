@@ -1,11 +1,12 @@
 <template>
     <fullscreen-view-camera 
         @approve="(picture) => { this.$emit('approve', picture); this.$emit('input', picture); }"
-        @loading="(loading) => {this.$emit('loading', loading)}"
+        @loading="(loading) => { this.$emit('loading', loading) }"
         @snap="snap"
         @close="$emit('close')"
         :fullscreen-z-index="fullscreenZIndex"
         :must-approve="mustApprove"
+        :approve-ready="approveReady"
         :overlay-mask="overlayMask"
         :start-on-mounted="startOnMounted"
         :visible-overlay="visibleOverlay"
@@ -14,7 +15,7 @@
         <template v-slot:header>
             <slot name="header"></slot>
         </template>
-        </fullscreen-view-camera>
+    </fullscreen-view-camera>
     <standard-view-camera 
         @loading="(loading) => {this.$emit('loading', true)}"
         :overlay-mask="overlayMask"
@@ -133,6 +134,10 @@ export default {
             type: Boolean,
             default: false
         },
+        approveReady: {
+            type: Boolean,
+            default: true
+        }
         output: {
             type: String,
             default: OutputType.dataUrl
