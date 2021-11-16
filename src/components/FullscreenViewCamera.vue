@@ -24,6 +24,9 @@
                     <div class="control-slot">
                         <a @click="$emit('snap')" role="button" v-if="!picture"><i class="mdi mdi-circle"></i></a>
                         <a @click="approve" role="button" v-if="picture && mustApprove && approveReady"><i class="mdi mdi-check"></i></a>
+                        <a @click="start" role="button" v-if="picture && mustApprove && !approveReady">
+                          <i class="mdi mdi-close"></i>
+                        </a>
                     </div>
                     <div class="control-slot">
                         <a @click="switchCamera(false)" 
@@ -34,7 +37,10 @@
                         <a @click="start"
                             class="secondary-button"
                             role="button"
-                            v-if="picture"><i class="mdi mdi-camera-retake-outline"></i></a>
+                            v-if="picture && approveReady">
+                          <i class="mdi mdi-camera-retake-outline">
+                          </i>
+                        </a>
                     </div>
                 </div>
             </div>
