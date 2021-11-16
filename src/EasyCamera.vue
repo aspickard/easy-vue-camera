@@ -139,7 +139,7 @@ export default {
         approveReady: {
             type: Boolean,
             default: true
-        }
+        },
         output: {
             type: String,
             default: OutputType.dataUrl
