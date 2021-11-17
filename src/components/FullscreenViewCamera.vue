@@ -164,8 +164,7 @@ export default {
             this.start()
                 .then(camera => {
                     if(camera) {
-                        console.log("not setting facing mode to env.", camera.constraints)
-                        //camera.constraints.video.facingMode = 'environment';
+                        camera.constraints.video.facingMode = 'environment';
                         camera.start();
                     }
                 })
