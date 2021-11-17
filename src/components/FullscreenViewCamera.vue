@@ -164,7 +164,10 @@ export default {
             this.start()
                 .then(camera => {
                     if(camera) {
-                        camera.constraints.video.facingMode = 'environment';
+                        if (camera.devices.length) {
+                          console.log("Setting to environment mode.")
+                          camera.constraints.video.facingMode = 'environment';
+                        }
                         camera.start();
                     }
                 })
