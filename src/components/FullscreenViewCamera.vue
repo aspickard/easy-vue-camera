@@ -52,6 +52,33 @@
 import { v4 as uuid4 } from 'uuid';
 import Camera from 'easy-js-camera';
 
+export class Constraints {
+    constructor() {
+        this.video = {
+            facingMode: 'environment'
+        };
+        this.audio = false;
+    }
+    switchFacingMode(tryAgain = false) {
+        if(this.video.facingMode === 'user') {
+            this.video.facingMode = 'environment';
+        } else if(tryAgain) {
+            this.video.facingMode = {
+                exact: 'environment'
+            }
+        } else {
+            this.video.facingMode = 'user';
+        }
+        return this;
+    }
+    getConstraint() {
+        return {
+            video: this.video,
+            audio: this.audio
+        }
+    }
+}
+
 export default {
     computed: {
         hasHeader() {
@@ -120,12 +147,19 @@ export default {
             }
             this.video = document.getElementById(this.videoElementId);
             this.canvas = document.getElementById(this.canvasElementId);
-            return new Promise(resolve => {
-                Camera.tryInvokePermission(this.video, this.canvas)
-                    .then(camera => {
-                        this.camera = camera;
+            return new Promise((resolve, reject) => {
+                let constraints = new Constraints();
+                constraints.video.facingMode = "environment";
+                navigator.mediaDevices.
+                    getUserMedia(constraints)
+                    .then(() => {
+                        this.camera = new Camera(this.video, this.canvas)
                         resolve(camera);
-                    });
+                    })
+                    .catch(() => {
+                      reject();
+                    })
+
             });
         },
         stop() {
@@ -164,10 +198,6 @@ export default {
             this.start()
                 .then(camera => {
                     if(camera) {
-                        if (camera.devices.length) {
-                          console.log("Setting to environment mode.")
-                          camera.constraints.video.facingMode = 'environment';
-                        }
                         camera.start();
                     }
                 })
