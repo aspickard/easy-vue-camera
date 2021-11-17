@@ -59,15 +59,11 @@ export class Constraints {
         };
         this.audio = false;
     }
-    switchFacingMode(tryAgain = false) {
-        if(this.video.facingMode === 'user') {
-            this.video.facingMode = 'environment';
-        } else if(tryAgain) {
-            this.video.facingMode = {
-                exact: 'environment'
-            }
-        } else {
+    switchFacingMode(tryAgain) {
+        if(this.video.facingMode === 'environment') {
             this.video.facingMode = 'user';
+        } else {
+            this.video.facingMode = 'environment';
         }
         return this;
     }
