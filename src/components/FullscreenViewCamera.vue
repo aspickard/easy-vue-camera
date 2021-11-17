@@ -154,7 +154,7 @@ export default {
                     getUserMedia(constraints)
                     .then(() => {
                         this.camera = new Camera(this.video, this.canvas)
-                        resolve(camera);
+                        resolve(this.camera);
                     })
                     .catch(() => {
                       reject();
