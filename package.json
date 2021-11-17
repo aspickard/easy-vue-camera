@@ -38,6 +38,7 @@
   "dependencies": {
     "@mdi/font": "^5.8.55",
     "core-js": "^3.7.0",
+    "easy-js-camera": "git+ssh://git@github.com/not-so-dark/easy-js-camera.git",
     "material-design-icons": "^3.0.1",
     "uuid": "^8.3.1"
   },
