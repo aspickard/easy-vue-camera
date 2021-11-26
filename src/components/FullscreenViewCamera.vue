@@ -125,6 +125,9 @@ export default {
                     .then(camera => {
                         this.camera = camera;
                         resolve(camera);
+                    })
+                    .catch(error => {
+                      this.$emit('permissions');
                     });
             });
         },
