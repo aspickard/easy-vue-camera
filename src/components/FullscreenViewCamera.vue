@@ -10,8 +10,7 @@
             </div>
             <div class="video-wrapper" v-show="!picture">
                 <video :id="videoElementId" autoplay playsinline></video>
-                <div :class="{'visible-overlay': visibleOverlay}" class="overlay-mask">
-                    <img :src="overlayMask" v-if="visibleMask">
+                <div class="overlay-mask">
                 </div>
             </div>
             <canvas :id="canvasElementId" style="display: none"></canvas>
@@ -281,17 +280,9 @@ export default {
                 z-index: -1;
             }
             .overlay-mask {
-                max-width: 50vh;
-                max-height: 50vh;
-                width: 100%;
-                height: 100%;
                 margin-top: 10vh;
-                &.visible-overlay {
-                    box-shadow: 0px 0px 2000px 2000px rgba(0, 0, 0, .8);
-                }
-                img {
-                    width: 100%;
-                }
+                border: 3px solid white;
+                border-radius: 50%;
             }
         }
         .camera-snap {
@@ -348,5 +339,17 @@ export default {
             }
         }
     }
+}
+@media (orientation: portrait) {
+  .overlay-mask {
+    width: 100vw;
+    height: 100vw;
+  }
+}
+@media (orientation: landscape) {
+  .overlay-mask {
+    width: 100vh;
+    height: 100vh;
+  }
 }
 </style>
