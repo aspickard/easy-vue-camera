@@ -281,7 +281,7 @@ export default {
             }
             .overlay-mask {
                 margin-top: 10vh;
-                border: 3px solid white;
+                border: 3px dashed white;
                 border-radius: 50%;
             }
         }
