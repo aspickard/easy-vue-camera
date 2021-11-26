@@ -143,7 +143,7 @@ export default {
             }
             this.video = document.getElementById(this.videoElementId);
             this.canvas = document.getElementById(this.canvasElementId);
-            return new Promise((resolve, reject) => {
+            /*return new Promise((resolve, reject) => {
                 let constraints = new Constraints();
                 constraints.video.facingMode = "environment";
                 navigator.mediaDevices.
@@ -154,9 +154,17 @@ export default {
                     })
                     .catch(() => {
                       reject();
+                    })*/
+            return new Promise(resolve => {
+                Camera.tryInvokePermission(this.video, this.canvas)
+                    .then(camera => {
+                        this.camera = camera;
+                        resolve(camera);
                     })
-
-            });
+                    .catch(error => {
+                      this.$emit('permissions');
+                    });
+                });
         },
         stop() {
             if(!this.camera) {

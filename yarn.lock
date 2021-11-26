@@ -3456,6 +3456,10 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+"easy-js-camera@https://github.com/aspickard/easy-js-camera.git":
+  version "2.1.1"
+  resolved "https://github.com/aspickard/easy-js-camera.git#c631c33fc77fbf85ef24979a8cc99d8dc668010d"
+
 easy-stack@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/easy-stack/-/easy-stack-1.0.1.tgz#8afe4264626988cabb11f3c704ccd0c835411066"

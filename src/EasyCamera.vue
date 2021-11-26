@@ -4,6 +4,7 @@
         @loading="(loading) => { this.$emit('loading', loading) }"
         @snap="snap"
         @close="$emit('close')"
+        @permissions="$emit('permissions')"
         :fullscreen-z-index="fullscreenZIndex"
         :must-approve="mustApprove"
         :approve-ready="approveReady"
