@@ -280,7 +280,6 @@ export default {
                 z-index: -1;
             }
             .overlay-mask {
-                margin-top: 10vh;
                 border: 3px dashed white;
                 border-radius: 50%;
             }
@@ -342,6 +341,7 @@ export default {
 }
 @media (orientation: portrait) {
   .overlay-mask {
+    margin-top: 10vh;
     width: 100vw;
     height: 100vw;
   }
