@@ -22,9 +22,10 @@
                     </div>
                     <div class="control-slot">
                         <a @click="$emit('snap')" role="button" v-if="!picture"><i class="mdi mdi-circle"></i></a>
-                        <a @click="approve" role="button" v-if="picture && mustApprove && approveReady"><i class="mdi mdi-check"></i></a>
+                        <a @click="approve" role="button" v-if="picture && mustApprove && approveReady"><i
+                          class="mdi mdi-check"></i></a>
                         <a @click="start" role="button" v-if="picture && mustApprove && !approveReady">
-                          <i class="mdi mdi-close"></i>
+                          <i class="rotate mdi mdi-loading"></i>
                         </a>
                     </div>
                     <div class="control-slot">
@@ -142,18 +143,6 @@ export default {
             }
             this.video = document.getElementById(this.videoElementId);
             this.canvas = document.getElementById(this.canvasElementId);
-            /*return new Promise((resolve, reject) => {
-                let constraints = new Constraints();
-                constraints.video.facingMode = "environment";
-                navigator.mediaDevices.
-                    getUserMedia(constraints)
-                    .then(() => {
-                        this.camera = new Camera(this.video, this.canvas)
-                        resolve(this.camera);
-                    })
-                    .catch(() => {
-                      reject();
-                    })*/
             return new Promise(resolve => {
                 Camera.tryInvokePermission(this.video, this.canvas)
                     .then(camera => {
@@ -238,6 +227,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* ENDLESS ROTATE */
+.rotate {
+  animation: rotate 1.5s linear infinite; 
+}
+@keyframes rotate{
+  to{ transform: rotate(360deg); }
+}
 .fullscreen-camera {
     position: fixed;
     left: 0;
